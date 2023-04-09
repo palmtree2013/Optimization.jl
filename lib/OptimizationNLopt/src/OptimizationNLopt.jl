@@ -227,11 +227,11 @@ function SciMLBase.__solve(cache::NLoptOptimizationCache)
     t1 = time()
     retcode = __nlopt_status_to_ReturnCode(ret)
 
-    if retcode == ReturnCode.Failure
-        @warn "NLopt failed to converge: $(ret)"
-        minx = fill(NaN, length(cache.u0))
-        minf = NaN
-    end
+    # if retcode == ReturnCode.Failure
+    #     @warn "NLopt failed to converge: $(ret)"
+    #     minx = fill(NaN, length(cache.u0))
+    #     minf = NaN
+    # end
     SciMLBase.build_solution(cache, cache.opt, minx,
                              minf; original = opt_setup, retcode = retcode,
                              solve_time = t1 - t0)
